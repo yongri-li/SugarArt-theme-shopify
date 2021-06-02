@@ -1,0 +1,18 @@
+{% include 'framework--cart', view: 'desktop' %}
+{% include 'framework--cart', view: 'mobile' %}
+<script>
+(function() {
+var isb = 'insertBefore';
+    var fins = Element.prototype[isb];
+    Element.prototype[isb] = function () {
+        var a = arguments[0];
+        if (a && a.src) {
+                if (a.src.indexOf('tordenapps') != -1) {
+                    a.src = '';
+                }
+        }
+        return fins.apply(this, arguments);
+    };
+}());
+</script>
+<script src="https://scripts.terms.tordenapps.com/torden_shopify_terms.min.js?shop=thesugarart.myshopify.com"></script><script src ="https://zooomyapps.com/agree/ZooomyCartTerms.js" data-shop="{{shop.permanent_domain}}"  data-cart="{{ cart.item_count }}"></script>

@@ -1,0 +1,200 @@
+{% capture general_settings %}{{ settings.color--alternative }}{% endcapture %}
+
+{% if section.settings.logo %}
+  <style>
+    header .logo-image {
+      max-height: {{ section.settings.logo-height }}px;
+    }
+
+    .header--top-row {
+      height: {{ section.settings.logo-height | plus: 16 }}px;
+    }
+  </style>
+{% endif %}
+
+
+
+<header
+  class="header--root"
+  data-section-id="{{ section.id }}"
+  data-section-type="header-section"
+  data-js-class="Header"
+  data-center-logo="{{ section.settings.header-logo-center }}"
+  data-center-menu="{{ section.settings.header-menu-center }}"
+  {% if template contains 'index' and section.settings.transparent-menu %}
+    data-header--menu-transparent="true"
+  {% else %}
+    data-header--menu-transparent="false"
+  {% endif %}
+>
+
+  <div class="header--y-menu-for-off-canvas">
+    {% include 'framework--y-menu', handle: section.settings.menu %}
+  </div>
+
+  <div class="header--bg"></div>
+  <div class="header--top-row">
+    {% if settings.show_multiple_currencies  %}
+      <div class="header--currency">
+        {% include 'snippet-currency-selector' %}
+      </div>
+    {% endif %}
+
+    <div class="header--logo">
+      {% include 'snippet-store-title' %}
+    </div>
+
+    <div class="header--upper--nav header--upper-link">
+    
+      {% if section.settings.phone-number %}
+      <div class="header--phone header--upper-link">
+        Have questions? 
+        {% assign phone = section.settings.phone-number | split: '-' %}
+        <a href="tel:+1{{ phone[0] }}{{ phone[1] }}{{ phone[2] }}">1-{{ section.settings.phone-number }}</a><span class="header--pipe">|</span>
+      </div>
+      {% endif %}
+      <div class="header--top--icons header--upper-link">
+        {% if settings.search--show-in-header %}
+          <a class="header--search header--upper-link"
+            href="/search"
+            role="img"
+            aria-label="{{ 'layout.header.search' | t }}"
+          >{{ 'layout.header.search_toggle_link' | t }}
+            {% include 'snippet-symbol' with 'search' %}
+          </a>
+        {% endif %}
+    
+        {% if section.settings.header-account-show and shop.customer_accounts_enabled %}
+          <a class="header--account-icon header--upper-link"
+            href="/account"
+            role="img"
+            aria-label="{{ 'layout.header.account' | t }}"
+          >{{ 'layout.header.account_toggle_link' | t }}
+            {% include 'snippet-symbol' with 'account' %}
+          </a>
+        {% endif %}
+
+        <div class="header--cart header--upper-link">
+          <div class="cart">
+            {% include 'snippet-cart' %}
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+  </div>
+
+  <div class="header--bottom-row">
+
+    {% if linklists[section.settings.menu].links.size > 0 %}
+      {% assign header_nav = section.settings.menu %}
+
+      {% assign menu_alignment = 'left' %}
+      {% if section.settings.header-menu-center %}
+        {% assign menu_alignment = 'center' %}
+      {% endif %}
+
+      <div class="header--menu">
+        {%
+          include 'framework--x-menu',
+          js_class: 'XMenu',
+          align: menu_alignment,
+          overlap_parent: 1,
+          handle: section.settings.menu
+        %}
+      </div>
+    {% endif %}
+
+  </div>
+
+  <div class="header--mobile">
+    <div class="header--mobile--menu off-canvas--open" data-off-canvas--open="left-sidebar">
+      {% include 'snippet-symbol' with 'menu' %}
+    </div>
+
+    <div class="header--mobile--title">
+      {% include 'snippet-store-title' %}
+    </div>
+
+    <div class="header--mobile--cart font--accent">
+      {% include 'snippet-cart' %}
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="header-divider"></div>
+  </div>
+
+</header>
+
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section--header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "transparent-menu",
+      "label": "Transparent on home page",
+      "info": "Only recommended with a full width image in top section"
+    },
+    {
+      "type": "text",
+      "id": "phone-number",
+      "label": "Header Phone Number",
+      "info": "Important for Customer Service; please use the format xxx-xxx-xxxx",
+      "default": "817-297-2240"
+    },
+    {
+      "type": "checkbox",
+      "id": "header-account-show",
+      "label": "Enable customer account links",
+      "default": true,
+      "info": "[You will also need to enable customer accounts in your store settings](http:\/\/docs.shopify.com\/manual\/your-store\/customers\/customer-accounts)"
+    },
+    {
+      "type": "header",
+      "content": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "header-menu-center",
+      "label": "Center align"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "checkbox",
+      "id": "header-logo-center",
+      "label": "Center align"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Image",
+      "info": "1600 x 200px max"
+    },
+    {
+      "label": "Image Height",
+      "id": "logo-height",
+      "type": "range",
+      "min": 15,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "info": "This is referring to the natural height and should be half the height of the image you uploaded to ensure it stays sharp on retina screens."
+    }
+  ]
+}
+{% endschema %}

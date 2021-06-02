@@ -1,0 +1,30 @@
+<h2 class="title font--section-heading">{{ 'products.share_this' | t }}</h2>
+{% capture shareurl %}{{ shop.url }}{{ product.url }}{% endcapture %}
+
+{% if section.settings.product-share-twitter %}
+  <a class="share-item twitter font--accent" href="https://twitter.com/intent/tweet?text=Check%20out%20this%20{%if template contains "article" or template contains "blog"%}blog%20post{% elsif template contains "product" %}product{%endif%}:+{{ shareurl }}" rel="noreferrer">
+    {% include 'snippet-symbol' with 'twitter' %}
+    <span>Tweet</span>
+  </a>
+{% endif %}
+
+{% if section.settings.product-share-facebook %}
+  <a class="share-item facebook font--accent" href="http://www.facebook.com/sharer.php?u={{ shareurl }}&t={{ product.title }}" rel="noreferrer">
+    {% include 'snippet-symbol' with 'facebook' %}
+    <span>Like</span>
+  </a>
+{% endif %}
+
+{% if section.settings.product-share-pinterest %}
+  <a class="share-item pinterest font--accent" href="http://pinterest.com/pin/create/button/?url={{ shareurl }}&media={{ product.featured_image | img_url: '2000x' }}&description={{ product.title | strip_html | escape | replace: ' ', '%20' }}" count-layout="none" rel="noreferrer">
+    {% include 'snippet-symbol' with 'pinterest' %}
+    <span>Pin</span>
+  </a>
+{% endif %}
+
+{% if section.settings.product-share-tumblr %}
+  <a class="share-item tumblr font--accent" href="http://www.tumblr.com/share/link?url={{ shareurl | replace: 'http://', '' }}" rel="noreferrer">
+    {% include 'snippet-symbol' with 'tumblr' %}
+    <span>Post</span>
+  </a>
+{% endif %}

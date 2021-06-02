@@ -1,0 +1,40 @@
+<style>
+  :root {
+    {{ framework--css-variables }}
+
+    --image--popup: url('{{ settings.popup--image | img_url: "1200x" }}');
+
+    --color--accent: {{ settings.color--accent }};
+    --color-text: {{ settings.color-text }};
+    --color-page-bg: {{ settings.color-page-bg }};
+    --color-panel-bg: {{ settings.color-panel-bg }};
+    --color-border: {{ settings.color-border }};
+    --color-error: {{ settings.color-error }};
+    --color-button: {{ settings.color-button }};
+    --color-button-bg: {{ settings.color-button-bg }};
+    --color--body--light: {{ settings.color-text | color_lighten: 19 }};
+    --color--alternative: {{ settings.color--alternative }};
+    --color-header: {{ settings.color-header }};
+    --color-header-bg: {{ settings.color-header-bg }};
+    --color-menu-bg: {{ settings.color-menu-bg }};
+    --color-menu-item-hover: {{ settings.color-menu-item-hover }};
+    --color-menubar: {{ settings.color-header }};
+    --color-cart: {{ settings.color-header-cart }};
+    --color-footer: {{ settings.color-footer }};
+    --color-footer-bg: {{ settings.color-footer-bg }};
+    --color-slider-caption: {{ settings.color-slider-caption }};
+    --color-slider-caption-bg: {{ settings.color-slider-caption-bg }};
+    --color-slider-button: {{ settings.color-slider-button }};
+    --color-slider-button-bg: {{ settings.color-slider-button-bg }};
+    --color-slider-button-hover-bg: {{ settings.color-slider-button-hover-bg }};
+    --color-slider-nav: {{ settings.color-slider-nav }};
+    --color-product-slider-bg: {{ settings.color-product-slider-bg }};
+    --color-featured-promo-bg: {{ settings.color-featured-promo-bg }};
+    --color-social-feed-bg: {{ settings.color-social-feed-bg }};
+    --color-grid-sale: {{ settings.color-grid-sale }};
+    --color-grid-sale-bg: {{ settings.color-grid-sale-bg }};
+    --color-grid-sold-out: {{ settings.color-grid-sold-out }};
+    --color-grid-sold-out-bg: {{ settings.color-grid-sold-out-bg }};
+    --color-tabs-accordions: {{ settings.color-tabs-accordions }};
+  }
+</style>

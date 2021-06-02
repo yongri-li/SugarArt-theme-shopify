@@ -1,0 +1,44 @@
+<div class="collection-item columns large-4">
+  <a href="{{ collection.url }}">
+    <div class="image-wrapper">
+      <div class="hover"></div>
+
+      {% if collection.image %}
+        {%
+          include "framework--image",
+          image: collection.image,
+          full_width: true
+        %}
+      {% elsif collection.products.first %}
+        {%
+          include "framework--image",
+          image: collection.products.first.featured_image,
+          full_width: true
+        %}
+      {% else %}
+        {%
+          include "framework--placeholder",
+          type: "collection",
+          aspect_ratio: 1,
+          placeholder_index: 1
+        %}
+      {% endif %}
+    </div><!-- .coll-image-wrap -->
+    <div class="caption">
+      <div class="bg"></div>
+      <div class="inner">
+        <div class="font--block-heading">
+          {{ collection.title }}
+        </div>
+
+        {% assign trans_product = 'collections.product' | t %}
+        {% assign trans_products = 'collections.products' | t %}
+        
+        <p class="font--accent">
+          {{ collection.all_products_count }} 
+          {{ collection.all_products_count | pluralize: trans_product, trans_products }}
+        </p>
+      </div>
+    </div>
+  </a>
+</div>

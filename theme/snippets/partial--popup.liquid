@@ -1,0 +1,29 @@
+{% if settings.popup--enabled %}
+  <div class="popup--root">
+    {% if settings.popup--newsletter--heading != blank %}
+      <div class="popup--heading font--block-heading">{{ settings.popup--newsletter--heading }}</div>
+    {% endif %}
+
+    {% form 'customer' %}
+      <input type="hidden" name="contact[tags]" value="newsletter" />
+      <input type="hidden" name="contact[first_name]" value="Newsletter" />
+      <input type="hidden" name="contact[last_name]" value="Subscriber" />
+      <label for="contact[email]" class="hidden">
+        {{ 'layout.footer.newsletter_placeholder' | t }}
+      </label>
+      <input class="small"
+            type="email"
+            placeholder="{{ 'layout.footer.newsletter_placeholder' | t }}"
+            name="contact[email]"
+            id="contact[email]" />
+      <input type="submit"
+            class="font--button prefix"
+            value="{{ 'layout.footer.newsletter_button' | t }}"
+            name="subscribe" />
+
+      {% if form.posted_successfully? or form.errors %}
+        <script>window.location.hash = '#feedback-bar--newsletter';</script>
+      {% endif %}
+    {% endform %}
+  </div>
+{% endif %}

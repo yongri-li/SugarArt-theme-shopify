@@ -1,0 +1,16 @@
+{% assign follow_types = "facebook twitter instagram pinterest tumblr vimeo youtube" | split: ' ' %}
+{% for type in follow_types %}
+  {% capture follow_url %}footer-{{ type }}-follow-url{% endcapture %}
+  {% if settings[follow_url].size > 0 %}
+    <a title="{{ snippet-social-follow | capitalize }}"
+       rel="noreferrer"
+       target="_blank"
+       class="{{ snippet-social-follow }}"
+       href="{{ settings[follow_url] | escape }}"
+       role="img"
+       aria-label="{{ type }}">
+      {% include 'snippet-symbol' with type %}
+    </a>
+  {% endif %}
+{% endfor %}
+

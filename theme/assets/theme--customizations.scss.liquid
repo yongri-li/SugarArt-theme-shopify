@@ -1,0 +1,34 @@
+@mixin mobile {
+  @media only screen and (max-width: 767px) { @content; }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 768px) { @content; }
+}
+
+.payment-icons--list {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 310px;
+}
+
+{% comment %}
+  Here's an example of a customization
+  You can paste this at the bottom of the page to see how it works
+
+  /* Author - Date - Customization */
+  /* E.g. Troop Themes - 12th November .... - Changed paragraph colors */
+  body {
+    @include mobile {
+      color: blue;
+    }
+
+    @include desktop {
+      color: green;
+    }
+  }
+{% endcomment %}
+
+/* Add your theme customizations below */
+
+

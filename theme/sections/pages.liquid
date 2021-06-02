@@ -1,0 +1,34 @@
+{% if page.handle == 'shop-instagram' %}
+<div class="columns">
+  <div class="page-content">
+    <h1 class="page-title font--section-heading">{{ page.title }}</h1>
+    <div class="font--paragraph rte-content">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="row single-column{% if section.settings.center-content--enabled %} center{% endif %}">
+  <div class="columns">
+    <div class="page-content">
+      <h1 class="page-title font--section-heading">{{ page.title }}</h1>
+      <div class="font--paragraph rte-content">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "Pages",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "center-content--enabled",
+      "label": "Center content",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

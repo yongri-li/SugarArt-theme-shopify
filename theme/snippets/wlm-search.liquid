@@ -1,0 +1,8 @@
+{% assign wlmHideItem_Search = false %}{% for tag in customer.tags %}
+{% if tag == 'bakers' %}{% assign wlmLockedTags25136 = false %}{% endif %}
+{% endfor %}
+
+
+
+{% if wlmHideItem_Search == true %}{% continue %}{% endif %}
+

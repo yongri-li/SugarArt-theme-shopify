@@ -1,0 +1,15 @@
+{% if settings.cart--type == 'drawer' %}
+  <div class="cart--open-right off-canvas--open" data-off-canvas--open="right-sidebar">
+{% endif %}
+    
+   
+<a class="header--cart-link font--accent" href="/cart" aria-label="{{ 'layout.header.cart' | t }}" >
+  {% include 'snippet-symbol' with 'cart' %}
+  <span class="number-wrapper" data-item-count="{{ cart.item_count }}">
+  (<span class="number cart--external--total-items">{{ cart.item_count }}</span>)
+  </span>
+</a>
+
+{% if settings.cart--type == 'drawer' %}
+  </div>
+{% endif %}

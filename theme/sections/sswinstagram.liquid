@@ -1,0 +1,54 @@
+<div class="ssw-instagram-feed-wrap container page-width">
+    <div class="section clearfix">
+      <div class="sixteen columns">
+        <div class="clearfix placeholder-instagram">
+          <div class="ssw-html-widget ssw-instagram-widget" data-module="service" data-count_instaimages_in_row='4' data-name="instagramPhotos" {{section.settings.option_galleries_id}}>
+            <div class="ssw-page-loading">
+              <span class="ssw-spin ssw-loader"></span>
+            </div>
+          </div>    
+        </div>
+      </div>
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Shoppable Instagram",
+    "class": "ssw-instagram-section",
+    "settings": [
+        {
+            "type": "select",
+            "id": "option_galleries_id",
+            "options": [
+                {
+                    "group": "(#1) Follow us @thesugarart",
+                    "value": "data-gallery_id=\"1\" data-widget=\"0\"",
+                    "label": "grid"
+                },
+                {
+                    "group": "(#1) Follow us @thesugarart",
+                    "value": "data-gallery_id=\"1\" data-widget=\"1\"",
+                    "label": "slide"
+                },
+                {
+                    "group": "(#1) Follow us @thesugarart",
+                    "value": "data-gallery_id=\"1\" data-widget=\"2\"",
+                    "label": "listing"
+                },
+                {
+                    "group": "(#1) Follow us @thesugarart",
+                    "value": "data-gallery_id=\"1\" data-widget=\"3\"",
+                    "label": "masonry"
+                }
+            ],
+            "label": "Choose gallery"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Shoppable Instagram",
+            "category": "Image"
+        }
+    ]
+}
+{% endschema %}

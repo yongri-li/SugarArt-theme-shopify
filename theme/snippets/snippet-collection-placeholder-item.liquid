@@ -1,0 +1,21 @@
+<div class="collection-item columns large-4">
+  <a href="{{ collection.url }}">
+    <div class="image-wrapper">
+      {%
+        include "framework--placeholder",
+        type: "collection",
+        aspect_ratio: 1,
+        placeholder_index: snippet-collection-placeholder-item
+      %}
+    </div><!-- .coll-image-wrap -->
+    <div class="caption">
+      <div class="bg"></div>
+      <div class="inner">
+        <div class="font--block-heading">
+          {{ 'collections.onboarding.title' | t }}
+        </div>
+        <p class="font--accent">{{ 'collections.onboarding.num_items' | t }}</p>
+      </div>
+    </div>
+  </a>
+</div>

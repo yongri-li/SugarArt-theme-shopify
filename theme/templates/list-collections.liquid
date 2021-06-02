@@ -1,0 +1,46 @@
+{% paginate collections by 36 %}
+
+<header class="row">
+  <div class="left columns large-6">
+    {% if snippet-collection-listing == '' or template == 'list-collections' %}
+      <h1 class="font--section-heading">{{ 'collections.page_title' | t }}</h1>
+    {% else %}
+      <h1 class="font--section-heading">{{ linklists[snippet-collection-listing].title }}</h1>
+    {% endif %}
+  </div>
+</header>
+
+<div class="row">
+  <div class="collections-grid">
+    {% if linklists.all-collections.links.size > 0 %}
+  		{% assign collection_list = linklists.all-collections.links %}
+      {% for link in collection_list %}
+        {% assign collection = link.object %}
+        {% unless collection.handle == 'all' or collection.handle == 'all-products' or collection.handle == 'frontpage' %}
+          {% include 'snippet-collection-item' %}
+        {% endunless %}
+      {% endfor %}
+
+    {% elsif collections.size > 0 %}
+      {% for collection in collections %}
+        {% unless collection.handle == 'all' or collection.handle == 'all-products' or collection.handle == 'frontpage' %}
+          {% include 'snippet-collection-item' %}
+        {% endunless %}
+      {% endfor %}
+    {% else %}
+      {% for i in (1..6) %}
+        {% include 'snippet-collection-placeholder-item' with i %}
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+{% if paginate.pages > 1 %}
+  <footer class="row">
+    <div class="right columns large-6">
+      {% include 'snippet-pagination' %}
+    </div>
+  </footer>
+{% endif %}
+
+{% endpaginate %}
