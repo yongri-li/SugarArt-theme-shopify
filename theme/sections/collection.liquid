@@ -72,6 +72,17 @@
 
     {% else %}
       <section class="row">
+        {% if collection.description != blank %}
+          {% assign descriptions = collection.description | split: "<!-- split -->" %}
+          {% assign short_desc = descriptions[0] %}
+          {% assign long_desc = descriptions[1] %}
+
+          <article class="description--top collection--description font--paragraph margin-x-auto">
+            {{ short_desc }}
+          </article>
+
+        {% endif %}
+
         <div
           class="product-grid--root"
           data-items-per-row="{{ section.settings.collections-products-per-row }}"
@@ -92,12 +103,12 @@
         <div class="divider bottom-margin"></div>
       </div>
     </div>
-
-    {% if collection.description.size > 0 %}
+    {% if long_desc.size > 0 %}
       <article class="description--bottom collection--description font--paragraph margin-x-auto">
-        {{ collection.description }}
+        {{ long_desc }}
       </article>
     {% endif %}
+    
   </div>
 
 
