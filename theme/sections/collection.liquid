@@ -103,11 +103,13 @@
         <div class="divider bottom-margin"></div>
       </div>
     </div>
-    {% if long_desc.size > 0 %}
-      <article class="description--bottom collection--description font--paragraph margin-x-auto">
-        {{ long_desc }}
-      </article>
-    {% endif %}
+    <div class="row">
+      {% if long_desc.size > 0 %}
+        <article class="description--bottom collection--description font--paragraph margin-x-auto">
+          {{ long_desc }}
+        </article>
+      {% endif %}
+    </div>    
     
   </div>
 
