@@ -88,8 +88,7 @@
     <!--  ShopInformation -->
     
     <!--EndCareCartCustomCode-->
-    
-    <!--about-app-css-js-start--><script type="text/javascript" async src='https://thesugarart.myshopify.com/tools/about-js?version=1.0'></script><!--about-app-css-js-end-->
+
     {{ 'product.css' | asset_url | stylesheet_tag }}
 </head>
 <body class="page-{{ page_title | handle }} {% if customer %}customer-logged-in {% endif %}template-{{ template | split: '.' | first | remove: '/' | remove: '_' }}">
