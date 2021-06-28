@@ -143,6 +143,23 @@ data-off-canvas--state="closed"
 <!-- Restock Alerts Snippet Start -->
 {% render 'restock-alerts' %}
 <!-- Restock Alerts Snippet End -->
+<!-- New Terms Modal -->
+<div class="terms-modal">
+    <div class="modal-wrapper">
+        <div class="modal-content">
+            {{ settings.cart--terms }}
+        </div>
+        <button class="modal-toggle">Close</button>
+    </div>
+</div>
 
+<script>
+  $(document).ready(function () {
+    $('.modal-toggle').on('click', function(e) {
+      e.preventDefault();
+      $('.terms-modal').toggleClass('is-visible');
+    });
+  });
+</script>
 </body>
 </html>
