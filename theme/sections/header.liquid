@@ -45,7 +45,7 @@
     </div>
 
     <div class="header--upper--nav header--upper-link">
-    
+      {% comment %}
       {% if section.settings.phone-number %}
       <div class="header--phone header--upper-link">
         Have questions? 
@@ -53,6 +53,11 @@
         <a href="tel:+1{{ phone[0] }}{{ phone[1] }}{{ phone[2] }}">1-{{ section.settings.phone-number }}</a><span class="header--pipe">|</span>
       </div>
       {% endif %}
+      {% endcomment %}
+      <div class="header--phone header--upper-link">
+        Have questions?
+        <a href="mailto:info@thesugarart.com">info@thesugarart.com</a><span class="header--pipe">|</span>
+      </div>
       <div class="header--top--icons header--upper-link">
         {% if settings.search--show-in-header %}
           <a class="header--search header--upper-link"
