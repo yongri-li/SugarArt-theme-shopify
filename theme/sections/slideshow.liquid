@@ -42,12 +42,12 @@
               %}
             {% endif %}
           {% else %}
-            {%
-              include 'framework--image',
-              image: block.settings.image,
-              link: widget_image_link,
-              full_width: true
-            %}
+            <picture>
+              {% if block.settings.mobile_image %}
+                <source media="(max-width:768px)" srcset="{{ block.settings.mobile_image | img_url: '768x' }}">
+              {% endif %}
+              <img src="{{ block.settings.image | img_url: '2000x' }}" alt="{{ block.settings.image.alt }}">
+            </picture>
           {% endif %}
 
           {% if block.settings.slide-video.size > 0 %}
@@ -184,6 +184,11 @@
           "id": "image",
           "label": "Image",
           "info": "2000 x 1100px recommended"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image"
         },
         {
           "type": "text",
