@@ -9756,6 +9756,15 @@ html.no-cssgrid .product-page--thumbs[data-position='image-column'] {
   max-width: 32%;
   width: 100px;
   outline: none;
+  position: relative;
+
+  .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
 }
 
 .product-page--thumb[data-active='true'] img {
@@ -9790,6 +9799,10 @@ html.no-cssgrid .product-page--thumbs[data-position='image-column'] {
 .product-page--images .modal--link {
   cursor: -webkit-zoom-in;
   cursor: zoom-in;
+
+  iframe {
+    z-index: 1;
+  }
 }
 
 @media only screen and (max-width: 767px) {

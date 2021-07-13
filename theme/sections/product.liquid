@@ -16,12 +16,21 @@
       {% assign active_image = true %}
     {% endif %}
 
+    {% assign is_video = false %}
+    {% if image.alt contains 'vimeo.com' %}
+      {% assign is_video = true %}
+    {% endif %}
+
     <div
       class="product-page--thumb"
       data-active="{{ active_image }}"
       data-id="{{ image.id }}"
       tabindex="0"
+      {% if is_video %}data-video-url="{{ image.alt }}"{% endif %}
     >
+      {% if is_video %}
+        <span class="play-icon"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M23 12l-22 12v-24l22 12zm-21 10.315l18.912-10.315-18.912-10.315v20.63z"/></svg></span>
+      {% endif %}
       {%
         include 'framework--image',
         image: image,
@@ -239,11 +248,15 @@
                     data-active="{{ active_image }}"
                     data-id="{{ image.id }}"
                   >
-                    {%
-                      include 'framework--image',
-                      image: image,
-                      preload: true
-                    %}
+                    {% if image.alt contains 'vimeo.com' %}
+                    <iframe title="vimeo-player" src="{{ image.alt }}?autoplay=1&loop=1" allow="autoplay" allowfullscreen="" width="1000px" height="360px" frameborder="0"></iframe>
+                    {% else %}
+                      {%
+                        include 'framework--image',
+                        image: image,
+                        preload: true
+                      %}
+                    {% endif %}
                   </div>
 
                   {% if section.settings.product-zoom-enabled %}
