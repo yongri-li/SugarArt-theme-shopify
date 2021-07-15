@@ -518,6 +518,11 @@
         "id": "cart--show-note",
         "label": "Enable order notes",
         "default": true
+      },
+      {
+        "type": "product",
+        "id": "cart_upsell_product",
+        "label": "Cart Upsell Product"
       }
     ]
   }

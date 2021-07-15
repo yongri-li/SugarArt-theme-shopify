@@ -540,17 +540,17 @@ function(e,t){"object"==typeof exports?module.exports=t():"function"==typeof def
       var _this, new_items;
       _this = this;
       new_items = new_html.find('.cart--item');
-      new_items.each(function() {
-        var new_image, new_instance, old_image, old_item, variant_id;
-        variant_id = $(this).data('variant-id');
-        new_image = $(this).find('.cart--item--image');
-        new_instance = new_html.find("[data-variant-id=\"" + variant_id + "\"] .cart--item--image").index(new_image);
-        old_item = old_html.find("[data-variant-id=\"" + variant_id + "\"]").eq(new_instance);
-        if (old_item.length > 0) {
-          old_image = old_item.find('.cart--item--image');
-          return new_image.replaceWith(old_image);
-        }
-      });
+      // new_items.each(function() {
+      //   var new_image, new_instance, old_image, old_item, variant_id;
+      //   variant_id = $(this).data('variant-id');
+      //   new_image = $(this).find('.cart--item--image');
+      //   new_instance = new_html.find("[data-variant-id=\"" + variant_id + "\"] .cart--item--image").index(new_image);
+      //   old_item = old_html.find("[data-variant-id=\"" + variant_id + "\"]").eq(new_instance);
+      //   if (old_item.length > 0) {
+      //     old_image = old_item.find('.cart--item--image');
+      //     return new_image.replaceWith(old_image);
+      //   }
+      // });
       return new_html;
     };
 
