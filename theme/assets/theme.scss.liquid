@@ -12966,22 +12966,23 @@ body.template--customers--register input[type='password'] {
 
 .cart--upsell {
   color: #212121;
-  font-family: var(--font--accent--family);
+  font-family: var(--font--accent--family);  
+}
 
-  @media only screen and (min-width: 768px) {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.cart--root[data-view="desktop"] .cart--upsell {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 .cart--upsell-label {
   font-size: 16px;
   margin-top: 20px;
+}
 
-  @media only screen and (min-width: 768px) {
-    margin-top: 46px;
-  }
+.cart--root[data-view="desktop"] .cart--upsell-label {
+  margin-top: 46px;
 }
 
 .cart--upsell-content {
@@ -13008,10 +13009,10 @@ body.template--customers--register input[type='password'] {
   margin-left: 16px;
   font-size: 16px;
   flex-grow: 1;
+}
 
-  @media only screen and (min-width: 768px) {
-    margin-left: 36px;
-  }
+.cart--root[data-view="desktop"] .cart-upsell-info {
+  margin-left: 36px;
 }
 
 .upsell-info-price {
@@ -13023,9 +13024,7 @@ body.template--customers--register input[type='password'] {
 }
 
 .upsell-current-price {
-  &.sale {
-    color: #84DFDC;
-  }
+  color: #84DFDC;
 }
 
 .upsell-old-price {
@@ -13051,14 +13050,88 @@ body.template--customers--register input[type='password'] {
     color: white;
     cursor: pointer;
 
-    @media only screen and (min-width: 768px) {
-      height: 45px;
-    }
-
     svg {
       margin-left: 12px;
     }
   }
 }
 
+.cart--root[data-view="desktop"] .btn_cart_upsell {
+  flex: 0 0 135px;
 
+  .btn_cart_upsell {
+    height: 45px;
+  }
+}
+
+.product-sticky-form {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 19px 15px;
+  background: white;
+  border-top: 1px solid #eee;
+  z-index: 10;
+  display: none;
+
+  .price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #272727;
+
+    .price-label {
+      font-size: 15px;
+    }
+
+    .actual-price {
+      font-size: 15px;
+      font-weight: 700;
+    }
+  }
+
+  .qty-atc-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    .qty-wrap {
+      flex: 0 0 101px;
+      display: flex;
+      border: 1px solid #eee;
+      border-radius: 2px;
+
+      button {
+        flex: 0 0 30px;
+        background: transparent;
+      }
+
+      input {
+        flex-grow: 1;
+        border: none;
+        font-size: 14px;
+      }
+    }
+
+    .atc-wrap {
+      flex-grow: 1;
+      margin-left: 16px;
+
+      button {
+        border-radius: 2px;
+        background: #272727;
+        color: white;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  }
+}
+
+#smile-ui-container {
+  transform: translateY(-140px);
+}

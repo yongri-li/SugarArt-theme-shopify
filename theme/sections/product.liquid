@@ -198,6 +198,23 @@
           {% endform %}
         </div>
 
+        <div class="product-sticky-form">
+          <div class="price">
+            <div class="price-label">Price</div>
+            <div class="actual-price money">{{ product.first_available_variant.price }}</div>
+          </div>
+          <div class="qty-atc-form">
+            <div class="qty-wrap">
+              <button data-sticky-qty-minus class="minus">-</button>
+              <input data-sticky-qty-input class="qty" value="1" name="quantity"/>
+              <button data-sticky-qty-plus class="plus">+</button>
+            </div>
+            <div class="atc-wrap">
+              <button data-sticky-atc class="font--secondary-button" type="button">ADD TO CART</button>
+            </div>
+          </div>
+        </div>
+
         <div class="pick-variant" style="display: none;">
           <p class="error font--paragraph">{{ 'products.please_pick_variant' | t }}</p>
         </div>
