@@ -153,14 +153,22 @@ data-off-canvas--state="closed"
     </div>
 </div>
 
+<script src="https://cdn.attn.tv/thesugarart/dtag.js"></script>
 <script>
   $(document).ready(function () {
-    $('.modal-toggle').on('click', function(e) {
+    $('body').on('click', '.modal-toggle', function(e) {
       e.preventDefault();
       $('.terms-modal').toggleClass('is-visible');
     });
+    $('.cart--checkout-button').prop('disabled', !$('#acceptTerms:checked').length);//initially disable/enable button based on checked length
+    $('body').on('click', '#acceptTerms', function() {
+      if ($(this).is(':checked')) {
+        $('.cart--checkout-button').prop('disabled', false);
+      } else {
+        $('.cart--checkout-button').prop('disabled', true);
+      }
+    });
   });
 </script>
-<script src="https://cdn.attn.tv/thesugarart/dtag.js"></script>
 </body>
 </html>
