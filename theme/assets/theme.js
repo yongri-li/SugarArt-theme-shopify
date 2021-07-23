@@ -3321,6 +3321,8 @@ function(e,t){"object"==typeof exports?module.exports=t():"function"==typeof def
         }
       });
       _this.sub_menu_links.on('click', function(e) {
+        $('.mobile-nav-close').hide();
+        $('.mobile-nav-back').css('display', 'flex');
         _this.slideLeft($(this));
         return false;
       });

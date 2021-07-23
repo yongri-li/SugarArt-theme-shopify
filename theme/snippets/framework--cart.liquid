@@ -39,22 +39,25 @@
               {% include "framework--image", image: upsell_product.featured_image %}
             </div>
             <div class="cart-upsell-info">
-              <div class="upsell-info-title">{{ upsell_product.title }}</div>
-              <div class="upsell-info-price">                    
-                <span class="upsell-current-price {% if upsell_product.first_available_variant.original_price %}sale{% endif %}">{{ upsell_product.first_available_variant.price | money }}</span>
-                {% if upsell_product.first_available_variant.original_price %}
-                  <span class="upsell-old-price">{{ upsell_product.first_available_variant.original_price | money }}</span>
-                {% endif %}
+              <div class="title-and-price">
+                <div class="upsell-info-title">{{ upsell_product.title }}</div>
+                <div class="upsell-info-price">                    
+                  <span class="upsell-current-price {% if upsell_product.first_available_variant.original_price %}sale{% endif %}">{{ upsell_product.first_available_variant.price | money }}</span>
+                  {% if upsell_product.first_available_variant.original_price %}
+                    <span class="upsell-old-price">{{ upsell_product.first_available_variant.original_price | money }}</span>
+                  {% endif %}
+                </div>
               </div>
-            </div>
-            <div class="cart-upsell-action">
-              <button type="button" class="btn_cart_upsell" data-cart-upsell-btn data-variant-id="{{ upsell_product.first_available_variant.id }}">
-                <span>ADD</span>
-                <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 3.5V0H4V3.5H0.5V4.5H4V8H5V4.5H8.5V3.5H5Z" fill="white"/>
-                </svg>                    
-              </button>
-            </div>
+              <div class="cart-upsell-action">
+                <button type="button" class="btn_cart_upsell" data-cart-upsell-btn data-variant-id="{{ upsell_product.first_available_variant.id }}">
+                  <span>ADD</span>
+                  <svg width="9" height="8" viewBox="0 0 9 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 3.5V0H4V3.5H0.5V4.5H4V8H5V4.5H8.5V3.5H5Z" fill="white"/>
+                  </svg>                    
+                </button>
+              </div>
+              
+            </div>            
           </div>
         </div>
       {% endif %}

@@ -1,3 +1,27 @@
+$(document).ready(function(){
+  console.log('document ready');
+  $('.megamenu').each(function(){
+    const parentLink = $(this).data('parent-link');
+    console.log(parentLink);
+    $parentMenu = $('.x-menu--level-1--link[data-link-id="' + parentLink + '"]');
+    $($parentMenu).find('.x-menu--level-2--container').remove();
+    $(this).appendTo($parentMenu);
+  });
+});
+
+
+
+$(document).on('click', '.mobile-nav-close', function(e){
+  $('.off-canvas--overlay').trigger('click');
+});
+
+$(document).on('click', '.mobile-nav-back', function(e){
+  console.log('back');
+  $('.mobile-nav-close').show();
+  $('.mobile-nav-back').hide();
+  $('.y-menu--back-link a').trigger('click');
+})
+
 $(document).on('click', '[data-cart-upsell-btn]', function(e){
   e.preventDefault();
   let formData = {
@@ -76,5 +100,6 @@ $(document).on('click', '[data-sticky-atc]', function(e){
   e.preventDefault();
   $('.add[type="submit"]').trigger('click');
 });
+
 
 

@@ -4,10 +4,13 @@
     
    
 <a class="header--cart-link font--accent" href="/cart" aria-label="{{ 'layout.header.cart' | t }}" >
-  {% include 'snippet-symbol' with 'cart' %}
-  <span class="number-wrapper" data-item-count="{{ cart.item_count }}">
-  (<span class="number cart--external--total-items">{{ cart.item_count }}</span>)
-  </span>
+  <span>Cart</span>
+  <div class="cart-icon-wrap">
+    {% include 'snippet-symbol' with 'cart' %}
+    <span class="number-wrapper" data-item-count="{{ cart.item_count }}">
+    <span class="number cart--external--total-items">{{ cart.item_count }}</span>
+    </span>
+  </div>
 </a>
 
 {% if settings.cart--type == 'drawer' %}
