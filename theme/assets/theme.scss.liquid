@@ -13291,6 +13291,18 @@ body.template--customers--register input[type='password'] {
     align-items: center;
     justify-content: flex-start;
 
+    &.learn-more {
+      padding-left: 15px;
+      margin-top: -8px;
+
+      a {
+        color: var(--color--accent) !important;
+        font-size: 16px;
+        font-family: 'Karla';
+        font-weight: 700;
+      }
+    }
+
     .badge {
       padding: 4px 8px;
       background: #D7F4F3;
@@ -13446,7 +13458,7 @@ body.template--customers--register input[type='password'] {
 
   & > span {
     @media (min-width: 768px) {
-      display: none;
+      margin-left: 8px;
     }
   }
 
@@ -13539,4 +13551,121 @@ body.template--customers--register input[type='password'] {
 
 header {
   transform: translateZ(0);
+}
+
+.shipping-cost-duration {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  .shipping-cost {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    span {
+      margin-left: 5px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Karla';
+    }
+  }
+
+  .shipping-duration {
+    font-family: 'Karla';
+    font-size: 15px;
+    position: relative;
+    margin-top: 7px;
+
+    @media (min-width: 769px) {
+      margin-left: 20px;
+      margin-top: 0;
+
+      &:before {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        content: '';
+        background: black;
+        top: 50%;
+        left: -12px;
+        transform: translateY(-50%);
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.free-shipping-condition {
+  margin-top: 7px;
+  font-size: 15px;
+  font-family: 'Karla';
+}
+
+.shipping-info {
+  margin-top: 24px;
+  margin-bottom: 34px;
+}
+
+.reward-points {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 15px;
+
+  span {
+    font-family: 'Karla';
+    font-weight: 700;
+    font-size: 15px;
+    margin-left: 8px;
+  }
+}
+
+.shipping_price {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 16px;
+
+  .value {
+    margin-left: 15px;
+  }
+}
+
+.shipping_duration {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 16px;
+
+  span {
+    margin-left: 6px;
+  }
+}
+
+.cart--root[data-view="mobile"] {
+  .cart--total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .font--block-heading {
+      padding-bottom: 0;
+    }
+  }
+
+  .shipping_price {
+    justify-content: space-between;
+  }
+
+  .shipping_duration {
+    justify-content: flex-start;
+  }
+}
+
+
+
+.cart--tax-info {
+  display: none;
 }

@@ -7,16 +7,12 @@
           <div class="linklist_item">
             <li class="linklist__title"><a href="{{ block.settings.all_link }}">{{ block.settings.title }}</a></li>
             {% for link in linklists[menu_handle].links %}
-            <li class="linklist__item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% if link.handle == 'learn-more' %}
+              <li class="linklist__item learn-more"><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% else %}
+              <li class="linklist__item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endif %}
             {% endfor %}
-            <a href="{{ block.settings.all_link }}" class="link_shopall {% if block.settings.shopall_big %}big{% endif %}">
-              <span>Shop All</span>
-              {% if block.settings.shopall_big %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="6" height="8" viewBox="0 0 6 8" fill="none">
-                  <path d="M1.66665 0L0.726654 0.94L3.77999 4L0.726654 7.06L1.66665 8L5.66665 4L1.66665 0Z" fill="white"/>
-                </svg>
-              {% endif %}
-            </a>
           </div>
         {% endif %}
       {% endfor %}

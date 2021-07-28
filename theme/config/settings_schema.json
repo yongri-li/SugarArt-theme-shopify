@@ -523,6 +523,16 @@
         "type": "product",
         "id": "cart_upsell_product",
         "label": "Cart Upsell Product"
+      },
+      {
+        "type": "text",
+        "id": "shipping_price",
+        "label": "Shipping Price"
+      },
+      {
+        "type": "text",
+        "id": "shipping_duration",
+        "label": "Shipping Duration"
       }
     ]
   }
