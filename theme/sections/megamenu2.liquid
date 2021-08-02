@@ -1,0 +1,115 @@
+<div class="megamenu" data-parent-link="{{ section.settings.parent_menu }}">
+  <div class="megamenu-content">
+    <div class="linklists {% if section.settings.stack_menu %}stack{% endif %}">
+      {% for block in section.blocks %}
+        {% if block.type == "menu" %}
+          {% assign menu_handle = block.settings.menu %}
+          <div class="linklist_item">
+            <li class="linklist__title"><a href="{{ block.settings.all_link }}">{{ block.settings.title }}</a></li>
+            {% for link in linklists[menu_handle].links %}
+            {% if link.handle == 'learn-more' %}
+              <!-- <li class="linklist__item learn-more"><a href="{{ link.url }}">{{ link.title }}</a></li> -->
+            {% else %}
+              <li class="linklist__item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% for block in section.blocks %}
+      {% if block.type == "image" %}
+        <div class="image_item">
+          <a class="menu-item-image" href="{{ block.settings.link_url }}">
+            <img src="{{ block.settings.image | img_url: '600x' }}"/>
+          </a>
+          <a class="image-item-title" href="{{ block.settings.link_url }}">
+            <span class="title">{{ block.settings.title }}</span>
+            {% if block.settings.has_badge %}
+              <span class="badge">{{ block.settings.badge_text }}</span>
+            {% endif %}
+          </a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Mega menu",
+  "class": "megamenu-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "parent_menu",
+      "label": "Parent Menu Handle"
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_menu",
+      "label": "Stack Menu?",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Menu link",
+      "type": "menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        },
+        {
+          "type": "checkbox",
+          "id": "shopall_big",
+          "label": "big button?",
+          "default": true
+        },
+        {
+          "type": "url",
+          "id": "all_link",
+          "label": "All Link"
+        }
+      ]
+    },
+    {
+      "name": "Image Block",
+      "type": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link Url"
+        },
+        {
+          "type": "checkbox",
+          "id": "has_badge",
+          "label": "Has Badge"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

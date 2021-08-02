@@ -1,0 +1,46 @@
+<div class="title-bar">
+  <span>{{ section.settings.title }}</span>
+</div>
+<div class="collection-items">
+  {% if section.settings.collection != blank %}
+  {% assign collection = collections[section.settings.collection] %}
+    <div
+      class="product-grid--root"
+      data-items-per-row="4"
+      data-mobile-items-per-row="2"
+      data-js-class="ProductGrid"
+    >
+      {% for product in collection.products limit: section.settings.products_limit %} 
+        {% include 'partial--product' %}
+      {% endfor %}
+
+    </div>
+  {% endif %}
+</div>
+{% schema %}
+{
+  "name": "Products Grid",
+  "class": "page-products-grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Products Limit",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "default": 8
+    }
+  ]
+}
+{% endschema %}

@@ -1,29 +1,23 @@
 
 <div class="mobile-nav--header">
+  <div class="mobile-nav-close">
+    {% include 'framework--icon', icon: 'cross' %}
+  </div>
+  <div class="mobile-nav-back">
+    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+      <path d="M6.00016 0L7.41016 1.41L2.83016 6L7.41016 10.59L6.00016 12L0.000156403 6L6.00016 0Z" fill="#84DFDC"/>
+    </svg>
+    <span>Back</span>
+  </div>
   {% if settings.search--show-in-header %}
     <div class="mobile-nav--search font--accent">
-      <a href="/search">{{ 'general.search.search' | t }}</a>
+      <a href="/search">
+        <span>{{ 'general.search.search' | t }}</span>
+        {% include 'framework--icon', icon: 'search' %}
+      </a>
+      
     </div>
-  {% endif %}
-
-  {% if shop.customer_accounts_enabled %}
-    <div class="mobile-nav--login font--accent">
-      {% if customer %}
-        {% assign view_account_link = 'layout.header.account_view_link' | t %}
-        {% capture view_account_link %}<a href="{{ routes.account_url }}">{{ view_account_link }}</a>{% endcapture %}
-        {{ view_account_link }}
-      {% else %}
-        {% assign login_link = 'layout.header.account_view_link' | t %}
-        {% assign login_link = login_link | customer_login_link %}
-
-        {% if shop.customer_accounts_optional %}
-          {{ login_link }}
-        {% else %}
-          {{ login_link }}
-        {% endif %}
-      {% endif %}
-    </div>
-  {% endif %}
+  {% endif %}  
 </div>
 
 

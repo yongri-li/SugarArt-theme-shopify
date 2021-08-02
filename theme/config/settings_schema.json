@@ -552,6 +552,31 @@
             "label": "Both"
           }
         ]
+      },
+      {
+        "type": "product",
+        "id": "cart_upsell_product",
+        "label": "Cart Upsell Product"
+      },
+      {
+        "type": "text",
+        "id": "shipping_price",
+        "label": "Shipping Price"
+      },
+      {
+        "type": "text",
+        "id": "shipping_duration",
+        "label": "Shipping Duration"
+      }
+    ]
+  },
+  {
+    "name": "Earning Point",
+    "settings": [
+      {
+        "type": "text",
+        "id": "earning_point_rate",
+        "label": "Earning Point Rate"
       }
     ]
   }

@@ -68,11 +68,12 @@
         {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
         {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
     {% endif %}
-    {{ "theme.js" | asset_url | script_tag }}
+    <!-- {{ "theme.min.js" | asset_url | script_tag }} -->
+    
+    
+    {{ "theme.js" | asset_url | script_tag }}    
+    <script src="{{ 'jquery.inview.min.js' | asset_url }}"></script>
     {{ "custom.js" | asset_url | script_tag }}
-    {%- comment -%}
-    {{ "theme.js" | asset_url | script_tag }}
-    {%- endcomment -%}
     <!--     <script src="https://cdn.younet.network/main.js"></script> -->
     <!--StartCartCartCustomCode-->
     
@@ -121,6 +122,8 @@ data-off-canvas--state="closed"
 <div class="off-canvas--main-content">
 {% section 'announcement' %}
 {% section 'header' %}
+{% section 'megamenu1' %}
+{% section 'megamenu2' %}
 <section class="main-content">
     {{ content_for_layout }}
     <noscript class="endOfLayoutContentX" type="text/mark"></noscript>{% render 'treedify_script' %}

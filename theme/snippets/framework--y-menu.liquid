@@ -60,14 +60,19 @@
               {% endif %}
 
               {% assign list_lvl_2 = link.handle %}
+              {% assign has_more_child = false %}
+              {% assign parent_link = link %}
               {% for link in linklists[list_lvl_2].links %}
 
                 <li
                   class="y-menu--level-2--link font--accent"
                   data-link-id="{{ list_lvl_2 }}--{{ link.handle }}"
                 >
-                  <a href="{{ link.url }}" data-submenu="true">
-                    {{ link.title }}
+                  <a href="{{ link.url }}" class="{% if link.handle == 'best-selling' %}highlight{% endif %}" data-submenu="true">
+                    <span>{{ link.title }}</span>
+                    {% if link.handle == 'savings-bundles' %}
+                      <span class="badge">Best Price</span>
+                    {% endif %}
                     {% if link.links != blank %}
                       {% include 'framework--icon', icon: 'chevron-right' %}
                     {% endif %}
@@ -75,10 +80,12 @@
 
                   {% comment %} Level 3 {% endcomment %}
                   {% if link.links != blank %}
+                    {% assign has_more_child = true %}
                     {% assign parent_link = true %}
                     {% if link.url == '#' or link.url == '/#' %}
                       {% assign parent_link = false %}
                     {% endif %}
+                    {% assign parent_link_url = link.url %}
 
                     <ul
                       class="y-menu--level-3--container"
@@ -107,18 +114,41 @@
                           </a>
                         </li>
                       {% endfor %}
+                      <li class="y-menu--level-3--link"><a class="highlight" href="{{ parent_link_url }}">
+                        <span>Shop All</span>                        
+                      </a></li>
                     </ul>
                   {% endif %}
                   {% comment %} End Level 3 {% endcomment %}
 
                 </li>
               {% endfor %}
+
+              {% unless has_more_child %}
+                <li class="y-menu--all-link"><a href="{{ parent_link.url }}">
+                  <span>Shop All</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="6" height="8" viewBox="0 0 6 8" fill="none">
+                    <path d="M1.66665 0L0.726654 0.94L3.77999 4L0.726654 7.06L1.66665 8L5.66665 4L1.66665 0Z" fill="white"/>
+                  </svg>
+                </a></li>
+              {% endunless %}
+
             </ul>
           {% endif %}
           {% comment %} End Level 2 {% endcomment %}
 
       </li>
     {% endfor %}
+    <li class="y-menu--level-1--link font--accent account-menu">
+      <a href="/account" class="account-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M18.7062 14.9844C17.7243 13.9205 16.5326 13.0714 15.2064 12.4907C13.8801 11.91 12.4479 11.6102 11.0001 11.6102C9.55228 11.6102 8.12013 11.91 6.79387 12.4907C5.4676 13.0714 4.27596 13.9205 3.294 14.9844C3.14239 15.1521 3.05758 15.3695 3.05566 15.5956V19.2622C3.05888 19.5032 3.15687 19.7332 3.32843 19.9025C3.49999 20.0718 3.73132 20.1667 3.97233 20.1667H18.0279C18.271 20.1667 18.5042 20.0701 18.6761 19.8982C18.848 19.7263 18.9446 19.4931 18.9446 19.25V15.5833C18.9397 15.3615 18.8551 15.1489 18.7062 14.9844Z" fill="#272727"/>
+          <path d="M10.9999 10.3889C13.3625 10.3889 15.2777 8.47366 15.2777 6.11111C15.2777 3.74856 13.3625 1.83333 10.9999 1.83333C8.63739 1.83333 6.72217 3.74856 6.72217 6.11111C6.72217 8.47366 8.63739 10.3889 10.9999 10.3889Z" fill="#272727"/>
+        </svg>
+        <span>Sign In</span>
+      </a>
+    </li>
+    <div class="index-section--flush powr-social-media-icons" id="5fb67565_1619484959"></div>
   </ul>
   {% comment %} End level 1 {% endcomment %}
 </nav>
