@@ -11704,7 +11704,7 @@ html.no-cssgrid .product-page--thumbs[data-position='image-column'] {
 }
 
 .cart--root[data-view='mobile'] .cart--body {
-  border-top: 1px solid var(--color-border);
+  //border-top: 1px solid var(--color-border);
 }
 
 .cart--headings {
@@ -11971,6 +11971,78 @@ html.no-cssgrid .product-page--thumbs[data-position='image-column'] {
 
 .cart--root[data-view='mobile'] .cart--additional-buttons {
   max-width: unset;
+}
+
+.cart--root {
+  .gift-meter {
+    border-radius: 4px;
+    background: #FAFAFA;
+    padding: 10px;
+    p {
+      font-size: 12px;
+      line-height: 16px;
+      span {
+        color: #2AA29E;
+      }
+    }
+    .meter-container {
+      position: relative;
+      meter {
+        width: 100%;
+      }
+      meter {
+        /* The gray background in Firefox */
+        background: transparent;
+      }
+
+      /* The gray background in Chrome, etc. */
+      meter::-webkit-meter-bar {
+        background: #D7F4F3;
+      }
+
+      /* The green (optimum) bar in Firefox */
+      meter:-moz-meter-optimum::-moz-meter-bar {
+        background: #84DFDC;
+      }
+
+      /* The green (optimum) bar in Chrome etc. */
+      meter::-webkit-meter-optimum-value {
+        background: #84DFDC;
+      }
+
+      /* The yellow (sub-optimum) bar in Firefox */
+      meter:-moz-meter-sub-optimum::-moz-meter-bar {
+        background: #84DFDC;
+      }
+
+      /* The yellow (sub-optimum) bar in Chrome etc. */
+      meter::-webkit-meter-suboptimum-value {
+        background: #84DFDC;
+      }
+
+      /* The red (even less good) bar in Firefox */
+      meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+        background: #84DFDC;
+      }
+
+      /* The red (even less good) bar in Chrome etc. */
+      meter::-webkit-meter-even-less-good-value {
+        background: #84DFDC;
+      }
+      img {
+        position: absolute;
+        top: 50%;
+      }
+      .truck {
+        right: -5px;
+        transform: translateY(-50%);
+      }
+      .gift {
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
 }
 
 .template-cart .main-content {
