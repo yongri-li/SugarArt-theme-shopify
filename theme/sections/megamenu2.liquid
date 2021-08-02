@@ -8,7 +8,7 @@
             <li class="linklist__title"><a href="{{ block.settings.all_link }}">{{ block.settings.title }}</a></li>
             {% for link in linklists[menu_handle].links %}
             {% if link.handle == 'learn-more' %}
-              <li class="linklist__item learn-more"><a href="{{ link.url }}">{{ link.title }}</a></li>
+              <!-- <li class="linklist__item learn-more"><a href="{{ link.url }}">{{ link.title }}</a></li> -->
             {% else %}
               <li class="linklist__item"><a href="{{ link.url }}">{{ link.title }}</a></li>
             {% endif %}

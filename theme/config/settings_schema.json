@@ -535,5 +535,15 @@
         "label": "Shipping Duration"
       }
     ]
+  },
+  {
+    "name": "Earning Point",
+    "settings": [
+      {
+        "type": "text",
+        "id": "earning_point_rate",
+        "label": "Earning Point Rate"
+      }
+    ]
   }
 ]
