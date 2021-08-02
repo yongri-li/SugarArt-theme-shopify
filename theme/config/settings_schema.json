@@ -520,6 +520,11 @@
         "default": true
       },
       {
+        "type": "richtext",
+        "id": "cart--terms",
+        "label": "Cart Terms"
+      },
+      {
         "type": "product",
         "id": "cart_upsell_product",
         "label": "Cart Upsell Product"

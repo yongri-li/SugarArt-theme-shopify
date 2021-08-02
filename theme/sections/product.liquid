@@ -10,9 +10,9 @@
 {% endif %}
 
 {% capture thumbnail_images %}
-  {% for image in product.images %}
+  {% for media in product.media %}
     {% assign active_image = false %}
-    {% if featured_image == image %}
+    {% if featured_image == media %}
       {% assign active_image = true %}
     {% endif %}
 
@@ -24,7 +24,7 @@
     <div
       class="product-page--thumb"
       data-active="{{ active_image }}"
-      data-id="{{ image.id }}"
+      data-id="{{ media.id }}"
       tabindex="0"
       {% if is_video %}data-video-url="{{ image.alt }}"{% endif %}
     >
@@ -67,6 +67,7 @@
           {% include 'snippet-breadcrumbs' %}
         {% endif %}
       </div>
+    </div>
   </header>
 
   <article itemscope itemtype="http://schema.org/Product">
@@ -270,14 +271,14 @@
         {% endif %}
       </div>
 
-      {% if product.images.size > 0 %}
+      {% if product.media.size > 0 %}
         <div class="product-page--images">
           <div class="product-page--images-container">
             <div class="modal--root" data-js-class="FrameworkModal">
 
-              {% for image in product.images %}
+              {% for media in product.media %}
                 {% assign active_image = false %}
-                {% if featured_image == image %}
+                {% if featured_image == media %}
                   {% assign active_image = true %}
                 {% endif %}
 
@@ -287,7 +288,7 @@
                   <div
                     class="product-page--image"
                     data-active="{{ active_image }}"
-                    data-id="{{ image.id }}"
+                    data-id="{{ media.id }}"
                   >
                     {% if image.alt contains 'vimeo.com' %}
                     <iframe title="vimeo-player" src="{{ image.alt }}?autoplay=1&loop=1" allow="autoplay" allowfullscreen="" width="1000px" height="360px" frameborder="0"></iframe>
@@ -303,13 +304,10 @@
                   {% if section.settings.product-zoom-enabled %}
                     <div
                       class="product-page--zoom-image"
-                      data-id="{{ image.id }}"
-                      data-aspect-ratio="{{ image.aspect_ratio }}"
+                      data-id="{{ media.id }}"
+                      data-aspect-ratio="{{ media.aspect_ratio }}"
                     >
-                      {%
-                        include "framework--image",
-                        image: image
-                      %}
+                      {% render 'media', media: media %}
                     </div>
                   {% endif %}
 
@@ -320,12 +318,9 @@
 
               {% if section.settings.product-modal-enabled %}
                 <div class="product-page--modal-images">
-                  {% for image in product.images %}
+                  {% for meda in product.media %}
                     <div class="modal--content">
-                      {%
-                        include "framework--image",
-                        image: image
-                      %}
+                      {% render 'media', media: media %}
                     </div>
                   {% endfor %}
                 </div>
@@ -334,7 +329,7 @@
             </div>
           </div>
 
-          {% if product.images.size > 1 %}
+          {% if product.media.size > 1 %}
             <div class="product-page--thumbs" data-position="image-column">
               <div class="product-page--thumbs-container">
                 {{ thumbnail_images }}

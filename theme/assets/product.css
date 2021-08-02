@@ -32,6 +32,7 @@
 
 .related-products .product-dropdown-item {
   	padding: 0 0.25rem;
+    font-size: 1.2em;
 }
 
 
@@ -75,6 +76,7 @@
 .current-product-title {
   margin-right: auto;
   margin-left: 0.5rem;
+    font-size: 1.35em;
 }
 
 .related-products-current {

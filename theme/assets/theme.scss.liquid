@@ -6279,6 +6279,17 @@ a.header--cart-link .fw--icon {
   flex-wrap: wrap;
   width: 100%;
   padding: 16px;
+  .owl-item {
+    align-self: stretch;
+    .product--root {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .product--details {
+        margin-top: auto;
+      }
+    }
+  }
 }
 
 .product-grid--root[data-centered='true'] {
@@ -9479,6 +9490,8 @@ html.no-cssgrid .template-product .border-decoration {
 }
 
 .template-product article .variants .selector-wrapper select {
+  font-size: 1.35em;
+  letter-spacing: initial;
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -9568,6 +9581,7 @@ html.no-cssgrid .template-product .border-decoration {
 .template-product article .quanity-cart-row .quantity input {
   margin: 0;
   flex: 1 1 60%;
+  font-size: 1.35em;
 }
 
 .template-product article .add-to-cart .sold-out {
@@ -13726,4 +13740,70 @@ header {
     }
   }
 
+/* New accept terms checkbox and modal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.accept-terms {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  label {
+    padding: 0;
+    text-align: left;
+    padding-left: 5px;
+  }
+  a {
+    text-decoration: underline;
+  }
+}
+
+.terms-modal {
+  position: fixed;
+  z-index: 10000; /* 1 */
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+
+  .modal-wrapper {
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 1.5em hsla(0, 0%, 0%, 0.35);
+    max-width: 700px;
+    max-height: 500px;
+    padding: 1em;
+    @media all and (max-width: 960px) {
+      width: 90%;
+      height: 90%;
+    }
+  }
+
+  .modal-wrapper > *:first-child {
+    margin-top: 0;
+  }
+
+  .modal-wrapper > *:last-child {
+    margin-bottom: 0;
+  }
+
+  .modal-toggle {
+    padding: 1em;
+    margin-top: 1em;
+  }
+
+  .modal-content {
+    max-height: calc(100% - 3em);
+    overflow-y: auto;
+  }
+}
+
+.terms-modal.is-visible {
+  display: block;
 }

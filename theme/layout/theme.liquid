@@ -90,8 +90,7 @@
     <!--  ShopInformation -->
     
     <!--EndCareCartCustomCode-->
-    
-    <!--about-app-css-js-start--><script type="text/javascript" async src='https://thesugarart.myshopify.com/tools/about-js?version=1.0'></script><!--about-app-css-js-end-->
+
     {{ 'product.css' | asset_url | stylesheet_tag }}
 </head>
 <body class="page-{{ page_title | handle }} {% if customer %}customer-logged-in {% endif %}template-{{ template | split: '.' | first | remove: '/' | remove: '_' }}">
@@ -148,6 +147,32 @@ data-off-canvas--state="closed"
 <!-- Restock Alerts Snippet Start -->
 {% render 'restock-alerts' %}
 <!-- Restock Alerts Snippet End -->
+<!-- New Terms Modal -->
+<div class="terms-modal">
+    <div class="modal-wrapper">
+        <div class="modal-content">
+            {{ settings.cart--terms }}
+        </div>
+        <button class="modal-toggle">Close</button>
+    </div>
+</div>
 
+<script src="https://cdn.attn.tv/thesugarart/dtag.js"></script>
+<script>
+  $(document).ready(function () {
+    $('body').on('click', '.modal-toggle', function(e) {
+      e.preventDefault();
+      $('.terms-modal').toggleClass('is-visible');
+    });
+    $('.cart--checkout-button').prop('disabled', !$('#acceptTerms:checked').length);//initially disable/enable button based on checked length
+    $('body').on('click', '#acceptTerms', function() {
+      if ($(this).is(':checked')) {
+        $('.cart--checkout-button').prop('disabled', false);
+      } else {
+        $('.cart--checkout-button').prop('disabled', true);
+      }
+    });
+  });
+</script>
 </body>
 </html>

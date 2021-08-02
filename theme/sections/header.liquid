@@ -48,14 +48,22 @@
     </div>
 
     <div class="header--upper--nav header--upper-link">
-    
-      {% if section.settings.phone-number %}
       <div class="header--phone header--upper-link">
-        Have questions? 
-        {% assign phone = section.settings.phone-number | split: '-' %}
-        <a href="tel:+1{{ phone[0] }}{{ phone[1] }}{{ phone[2] }}">1-{{ section.settings.phone-number }}</a><span class="header--pipe">|</span>
+        Have questions?
       </div>
-      {% endif %}
+      {% unless section.settings.hide-phone %}
+        {% if section.settings.phone-number %}
+          <div class="header--phone header--upper-link">
+            {% assign phone = section.settings.phone-number | split: '-' %}
+            <a href="tel:+1{{ phone[0] }}{{ phone[1] }}{{ phone[2] }}">1-{{ section.settings.phone-number }}</a><span class="header--pipe">|</span>
+          </div>
+        {% endif %}
+      {% endunless %}
+      {% unless section.settings.hide-email %}
+        <div class="header--phone header--upper-link">
+          <a href="mailto:{{ section.settings.header-email }}">{{ section.settings.header-email }}</a><span class="header--pipe">|</span>
+        </div>
+      {% endunless %}
       <div class="header--top--icons header--upper-link">
         {% if settings.search--show-in-header %}
           <a class="header--search header--upper-link"
@@ -146,11 +154,26 @@
       "info": "Only recommended with a full width image in top section"
     },
     {
+      "type": "checkbox",
+      "id": "hide-phone",
+      "label": "Hide phone number?"
+    },
+    {
       "type": "text",
       "id": "phone-number",
       "label": "Header Phone Number",
       "info": "Important for Customer Service; please use the format xxx-xxx-xxxx",
       "default": "817-297-2240"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide-email",
+      "label": "Hide email?"
+    },
+    {
+      "type": "text",
+      "id": "header-email",
+      "label": "Header Email"
     },
     {
       "type": "checkbox",
