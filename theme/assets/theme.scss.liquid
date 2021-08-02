@@ -13739,6 +13739,7 @@ header {
       padding-right: 16px;
     }
   }
+}
 
 /* New accept terms checkbox and modal
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -13806,4 +13807,10 @@ header {
 
 .terms-modal.is-visible {
   display: block;
+}
+
+@media (max-width: 768px) {
+  .product-page--description iframe {
+    max-height: 300px;
+  }
 }
