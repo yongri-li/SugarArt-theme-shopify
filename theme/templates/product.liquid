@@ -4,3 +4,39 @@
 
 <!--Start Stamped.io Auto Installation--><div id="stamped-main-widget" class="stamped-main-widget" data-widget-style="standard" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-description="{{ product.description | escape }}" data-product-sku="{{product.handle}}" data-product-type="{{product.type}}">{{ product.metafields.stamped.reviews }}</div><!--End Stamped.io Auto Installation-->{% render 'product_infox' %}
 
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+<script type="application/ld+json">
+{
+       "@context": "http://schema.org/",
+       "@type": "Product",
+  	   "url": "{{shop.secure_url | escape}}{{ product.url | escape }}",
+  	   "name": "{{ product.title | escape }}",
+       "image": "https:{{ product.featured_image.src | img_url: 'master' }}",
+       "description": "{{ product.description | escape }}",
+       "brand": {
+           "name": "{{ product.vendor }}"
+       },           
+       "sku": "{{ product.variants.first.sku }}",
+       "mpn": "{{ product.variants.first.sku }}",
+       "offers": {
+           "@type": "Offer",
+           "priceCurrency": "{{ shop.currency }}",
+           "price": "{{ current_variant.price | money_without_currency }}",
+           "availability": "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+           "seller": {
+               "@type": "Organization",
+                "name": "{{ shop.name }}"
+           },
+           "url": "{{shop.secure_url | escape}}{{ product.url | escape }}"
+       }
+ {% if product.metafields.stamped.reviews_count and product.metafields.stamped.reviews_count != "0" %},"aggregateRating": {
+"@type": "AggregateRating",
+"ratingValue": {{ product.metafields.stamped.reviews_average | round:2 }},
+"reviewCount": {{ product.metafields.stamped.reviews_count }},
+"bestRating": 5,
+"worstRating": 1
+}
+{% endif %}
+}
+</script>

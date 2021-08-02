@@ -25,7 +25,60 @@
   data-has-items="{{ has_items }}"
 >
   <div class="cart--header">
-    <h1 class="cart--title font--section-heading">{{ your_cart_t }}</h1>
+    <p class="cart--title font--section-heading">{{ your_cart_t }}</p>
+  </div>
+  <div class="gift-meter">
+    {% assign cartValue = cart.total_price %}
+    {% assign freeGift = settings.cart_free_gift | times: 1.0 %}
+    {% assign freeShipping = settings.cart_free_shipping | times: 1.0 %}
+    {% assign untilFreeShipping = freeShipping | minus: cartValue %}
+    {% assign untilFreeGift = freeGift | minus: cartValue %}
+    {% assign giftX = freeGift | divided_by: freeShipping %}
+    {% if cartValue >= freeGift and cartValue < freeShipping %}
+      {% if settings.cart_free_metor_type == 'both' %}
+        <p class="text"><span>Congratulations! You’ve unlocked <b>FREE Gift!</b></span>
+          Add {{ untilFreeShipping | money }} to receive a FREE Shipping!</p>
+      {% elsif settings.cart_free_metor_type == "only_shipping" %}
+        <p class="text">Almost there! Add {{ untilFreeShipping | money }} to receive  <b>FREE Shipping!</b></p>
+      {% else %}
+        <p class="text"><span>Congratulations! You’ve unlocked <b>FREE Shipping!</b></span></p>
+      {% endif %}
+    
+    {% endif %}
+    {% if cartValue >= freeShipping %}
+      {% if settings.cart_free_metor_type == 'both' %}
+        <p class="text"><span>Congratulations! You’ve unlocked <b>FREE Gift and FREE Shipping!</b></span></p>
+      {% elsif settings.cart_free_metor_type == "only_shipping" %}
+        <p class="text"><span>Congratulations! You’ve unlocked <b>FREE Shipping!</b></span></p>
+      {% else %}
+        <p class="text"><span>Congratulations! You’ve unlocked <b>FREE Gift!</b></span></p>
+      {% endif %}
+    
+    {% endif %}
+    {% if cartValue < freeGift %}
+      {% if settings.cart_free_metor_type == 'both' %}
+        <p class="text">Almost there! Add {{ untilFreeGift | money }} to unlock <b>FREE Gift</b> and {{ untilFreeShipping | money }} to receive a <b>FREE Shipping!</b></p>
+      {% elsif settings.cart_free_metor_type == "only_shipping" %}
+        <p class="text">Almost there! Add {{ untilFreeShipping | money }} to receive <b>FREE Shipping!</b></p>
+      {% else %}
+        <p class="text">Almost there! Add {{ untilFreeGift | money }} to unlock <b>FREE Gift</b></p>
+      {% endif %}
+    {% endif %}
+    <p>*Only for orders within the USA*</p>
+    <div class="meter-container">
+      {% if settings.cart_free_metor_type == 'both' %}
+        <meter id="giftMeter" value="{{ cartValue }}" min="0" max="{{ freeShipping }}"></meter>
+        <img src="{{ 'truck.svg' | asset_url }}" alt="Free Shipping" class="truck">
+        <img src="{{ 'gift.svg' | asset_url }}" alt="Free Gift" class="gift" style="left: {{ giftX | times: 100 }}%;">
+      {% elsif settings.cart_free_metor_type == "only_shipping" %}
+        <meter id="giftMeter" value="{{ cartValue }}" min="0" max="{{ freeShipping }}"></meter>
+        <img src="{{ 'truck.svg' | asset_url }}" alt="Free Shipping" class="truck">        
+      {% else %}
+        <meter id="giftMeter" value="{{ cartValue }}" min="0" max="{{ freeGift }}"></meter>
+        <img src="{{ 'gift.svg' | asset_url }}" alt="Free Gift" class="truck">
+      {% endif %}
+      
+    </div>
   </div>
   <form  class="cart--form" action="/cart" method="post" novalidate="">
 

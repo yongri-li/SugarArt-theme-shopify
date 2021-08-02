@@ -523,6 +523,35 @@
         "type": "richtext",
         "id": "cart--terms",
         "label": "Cart Terms"
+      },
+      {
+        "type": "text",
+        "id": "cart_free_shipping",
+        "label": "Cart Free Shipping (in cents)"
+      },
+      {
+        "type": "text",
+        "id": "cart_free_gift",
+        "label": "Cart Free Gift (in cents)"
+      },
+      {
+        "type": "select",
+        "id": "cart_free_metor_type",
+        "label": "Free Meter Select",
+        "options": [
+          {
+            "value": "only_shipping",
+            "label": "Only Shipping"
+          },
+          {
+            "value": "only_gift",
+            "label": "Only Gift"
+          },
+          {
+            "value": "both",
+            "label": "Both"
+          }
+        ]
       }
     ]
   }

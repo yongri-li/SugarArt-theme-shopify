@@ -317,7 +317,7 @@ function(e,t){"object"==typeof exports?module.exports=t():"function"==typeof def
         quantity = theme.utils.isNaN(parseInt($(this).val())) ? 1 : parseInt($(this).val());
         if (quantity !== 0) {
           return _this.updateQuantity(item_key, quantity, 700, function(success) {
-            if (success) {
+            if (success) {              
               return _this.updateAllHtml(function() {});
             }
           });
@@ -468,6 +468,7 @@ function(e,t){"object"==typeof exports?module.exports=t():"function"==typeof def
           data: "quantity=" + quantity + "&id=" + item_key
         }).done(function(data, textStatus, jqXHR) {
           callback(true);
+          console.log('update quantity');
           return _this.updateTotals();
         }).fail(function(jqXHR, textStatus) {
           if (jqXHR.responseText) {
@@ -576,6 +577,14 @@ function(e,t){"object"==typeof exports?module.exports=t():"function"==typeof def
         url: "/cart.js",
         dataType: "json"
       }).done(function(data, textStatus, jqXHR) {
+        _this.getHtml(_this.view, function(new_html) {
+          var new_form, old_form;
+          old_meter = _this.root.find('.gift-meter');
+          new_meter = new_html.find('.gift-meter');
+          
+          old_meter.replaceWith(new_meter);
+          
+        });
         var count, total_price;
         total_price = Shopify.formatMoney(data.total_price, theme.money_format);
         count = data.item_count;
