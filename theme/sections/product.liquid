@@ -10,9 +10,9 @@
 {% endif %}
 
 {% capture thumbnail_images %}
-  {% for media in product.media %}
+  {% for image in product.images %}
     {% assign active_image = false %}
-    {% if featured_image == media %}
+    {% if featured_image == image %}
       {% assign active_image = true %}
     {% endif %}
 
@@ -24,7 +24,7 @@
     <div
       class="product-page--thumb"
       data-active="{{ active_image }}"
-      data-id="{{ media.id }}"
+      data-id="{{ image.id }}"
       tabindex="0"
       {% if is_video %}data-video-url="{{ image.alt }}"{% endif %}
     >
@@ -276,9 +276,9 @@
           <div class="product-page--images-container">
             <div class="modal--root" data-js-class="FrameworkModal">
 
-              {% for media in product.media %}
+              {% for image in product.images %}
                 {% assign active_image = false %}
-                {% if featured_image == media %}
+                {% if featured_image == image %}
                   {% assign active_image = true %}
                 {% endif %}
 
@@ -288,7 +288,7 @@
                   <div
                     class="product-page--image"
                     data-active="{{ active_image }}"
-                    data-id="{{ media.id }}"
+                    data-id="{{ image.id }}"
                   >
                     {% if image.alt contains 'vimeo.com' %}
                     <iframe title="vimeo-player" src="{{ image.alt }}?autoplay=1&loop=1" allow="autoplay" allowfullscreen="" width="1000px" height="360px" frameborder="0"></iframe>

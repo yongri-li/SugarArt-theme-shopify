@@ -577,8 +577,9 @@ function(e,t){"object"==typeof exports?module.exports=t():"function"==typeof def
         url: "/cart.js",
         dataType: "json"
       }).done(function(data, textStatus, jqXHR) {
+        console.log('update totals');
         _this.getHtml(_this.view, function(new_html) {
-          var new_form, old_form;
+          var new_meter, old_meter;
           old_meter = _this.root.find('.gift-meter');
           new_meter = new_html.find('.gift-meter');
           
