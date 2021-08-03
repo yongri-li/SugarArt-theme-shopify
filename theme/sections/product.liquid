@@ -318,9 +318,12 @@
 
               {% if section.settings.product-modal-enabled %}
                 <div class="product-page--modal-images">
-                  {% for meda in product.media %}
+                  {% for image in product.images %}
                     <div class="modal--content">
-                      {% render 'media', media: media %}
+                      {%
+                        include "framework--image",
+                        image: image
+                      %} 
                     </div>
                   {% endfor %}
                 </div>
