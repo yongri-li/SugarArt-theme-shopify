@@ -444,8 +444,9 @@
           <!-- End Route Code -->
         <div class="cart--nav">
           <p class="accept-terms">
-            <input type="checkbox" id="acceptTerms" name="acceptTerms">
-            <label for="acceptTerms">I agree to the <a href="#" target="_blank" class="modal-toggle">terms and conditions</a>.</label>
+            {% assign cart_template_index = cart_template_index | plus: 1 %}
+            <input type="checkbox" id="acceptTerms--{{ cart_template_index }}" class="acceptTerms" name="acceptTerms">
+            <label for="acceptTerms--{{ cart_template_index }}">I agree to the <a href="#" target="_blank" class="modal-toggle">terms and conditions</a>.</label>
           </p>
           <div class="cart--continue-shopping font--block-link">
             <a href="{{ shop.url }}/collections/all">
@@ -461,6 +462,7 @@
       {% if additional_checkout_buttons %}
         <div class="cart--additional-buttons additional-checkout-buttons
           {% if view == 'mobile' %} additional-checkout-buttons--vertical {% endif %}">
+          <div class="buttons-overlap"></div>
           {{ content_for_additional_checkout_buttons }}
         </div>
       {% endif %}

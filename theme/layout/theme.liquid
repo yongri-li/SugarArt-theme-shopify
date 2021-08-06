@@ -104,6 +104,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% endunless %}
 {% include 'buddha-megamenu-wireframe' %}
 {% include 'icon-sprite.svg' %}
+{% assign cart_template_index = 0 %}
 <div
 class="off-canvas--viewport"
 data-js-class="FrameworkOffCanvas"
@@ -165,11 +166,13 @@ data-off-canvas--state="closed"
       $('.terms-modal').toggleClass('is-visible');
     });
     $('.cart--checkout-button').prop('disabled', !$('#acceptTerms:checked').length);//initially disable/enable button based on checked length
-    $('body').on('click', '#acceptTerms', function() {
+    $('body').on('click', '.acceptTerms', function() {
       if ($(this).is(':checked')) {
         $('.cart--checkout-button').prop('disabled', false);
+        $('.buttons-overlap').hide();
       } else {
         $('.cart--checkout-button').prop('disabled', true);
+        $('.buttons-overlap').show();
       }
     });
   });

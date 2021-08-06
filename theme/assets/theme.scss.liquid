@@ -12048,6 +12048,16 @@ html.no-cssgrid .product-page--thumbs[data-position='image-column'] {
 .cart--additional-buttons {
   max-width: 300px;
   margin-left: auto;
+  position: relative;
+
+  .buttons-overlap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
 }
 
 .cart--root[data-view='mobile'] .cart--additional-buttons {
