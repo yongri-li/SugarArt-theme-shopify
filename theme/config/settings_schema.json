@@ -579,5 +579,35 @@
         "label": "Earning Point Rate"
       }
     ]
+  },
+  {
+    "name": "Free Gift",
+    "settings": [
+      {
+        "type": "text",
+        "id": "free_gift_title",
+        "label": "Free Gift Title"
+      },
+      {
+        "type": "product",
+        "id": "gift_product1",
+        "label": "Gift Product 1"
+      },
+      {
+        "type": "product",
+        "id": "gift_product2",
+        "label": "Gift Product 2"
+      },
+      {
+        "type": "product",
+        "id": "gift_product3",
+        "label": "Gift Product 3"
+      },
+      {
+        "type": "product",
+        "id": "gift_product4",
+        "label": "Gift Product 4"
+      }
+    ]
   }
 ]

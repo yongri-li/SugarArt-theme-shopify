@@ -23,6 +23,7 @@
   data-view="{{ view }}"
   data-js-class="Cart"
   data-has-items="{{ has_items }}"
+  data-free-gift="{{ settings.cart_free_gift }}"
 >
   <div class="cart--header">
     <p class="cart--title font--section-heading">{{ your_cart_t }}</p>
@@ -158,7 +159,7 @@
                 {% assign property_size = item.properties | size %}
                 {% if property_size > 0 %}
                   {% for p in item.properties %}
-                    {% unless p.last == blank %}
+                    {% unless p.last == blank or p.first == '_free_gift' %}
                       <br>
                       {{ p.first }}:
                       {% comment %} Check if there was an uploaded file associated {% endcomment %}
@@ -291,7 +292,7 @@
                 {% if property_size > 0 %}
                   <div class="cart--item-properties">
                   {% for p in item.properties %}
-                    {% unless p.last == blank %}
+                    {% unless p.last == blank or p.first == '_free_gift' %}
                       <br>
                       {{ p.first }}:
                       {% comment %} Check if there was an uploaded file associated {% endcomment %}

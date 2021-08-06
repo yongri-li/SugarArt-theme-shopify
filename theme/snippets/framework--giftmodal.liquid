@@ -1,0 +1,62 @@
+<div class="modal-window freegift-modal">
+  <div class="modal--mask"></div>
+  <div class="modal-container">
+    <h3 class="gift-title">{{ settings.free_gift_title }}</h3>
+    <div class="products-wrap">
+      {% if settings.gift_product1 != blank %}
+        <div class="product-item">
+          {% assign gift_product = all_products[settings.gift_product1] %}
+          <a href="{{ gift_product.url }}" class="product-image">
+            {% render 'framework--image', image: gift_product.featured_image %}
+          </a>
+          <a href="{{ gift_product.url }}" class="product-title">
+            {{ gift_product.title }}
+          </a>
+          <a href="#" data-variant-id="{{ gift_product.selected_or_first_available_variant.id }}" class="btn_gift_add">ADD</a>
+        </div> 
+      {% endif %}
+      {% if settings.gift_product2 != blank %}
+        <div class="product-item">
+          {% assign gift_product = all_products[settings.gift_product2] %}
+          <a href="{{ gift_product.url }}" class="product-image">
+            {% render 'framework--image', image: gift_product.featured_image %}
+          </a>
+          <a href="{{ gift_product.url }}" class="product-title">
+            {{ gift_product.title }}
+          </a>
+          <a href="#" data-variant-id="{{ gift_product.selected_or_first_available_variant.id }}" class="btn_gift_add">ADD</a>
+        </div> 
+      {% endif %}     
+      {% if settings.gift_product3 != blank %}
+        <div class="product-item">
+          {% assign gift_product = all_products[settings.gift_product3] %}
+          <a href="{{ gift_product.url }}" class="product-image">
+            {% render 'framework--image', image: gift_product.featured_image %}
+          </a>
+          <a href="{{ gift_product.url }}" class="product-title">
+            {{ gift_product.title }}
+          </a>
+          <a href="#" data-variant-id="{{ gift_product.selected_or_first_available_variant.id }}" class="btn_gift_add">ADD</a>
+        </div> 
+      {% endif %}
+      {% if settings.gift_product4 != blank %}
+        <div class="product-item">
+          {% assign gift_product = all_products[settings.gift_product4] %}
+          <a href="{{ gift_product.url }}" class="product-image">
+            {% render 'framework--image', image: gift_product.featured_image %}
+          </a>
+          <a href="{{ gift_product.url }}" class="product-title">
+            {{ gift_product.title }}
+          </a>
+          <a href="#" data-variant-id="{{ gift_product.selected_or_first_available_variant.id }}" class="btn_gift_add">ADD</a>
+        </div> 
+      {% endif %}
+    </div>
+  </div>
+  <div class="modal--close">
+    <svg id="fw--icon--cross" viewBox="0 0 31 31.129">
+      <title>cross icon</title>
+      <path d="M17.617 15.564L30.564 2.558A1.5 1.5 0 0 0 28.437.442L15.5 13.438 2.564.442A1.5 1.5 0 0 0 .437 2.558l12.947 13.006L.437 28.571a1.5 1.5 0 0 0 2.127 2.116L15.5 17.691l12.936 12.996a1.5 1.5 0 0 0 2.127-2.116L17.617 15.564z"></path>
+    </svg>
+  </div>
+</div>

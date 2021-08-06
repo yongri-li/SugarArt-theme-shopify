@@ -577,7 +577,7 @@ function(e,t){"object"==typeof exports?module.exports=t():"function"==typeof def
         url: "/cart.js",
         dataType: "json"
       }).done(function(data, textStatus, jqXHR) {
-        console.log('update totals');
+
         _this.getHtml(_this.view, function(new_html) {
           var new_meter, old_meter;
           old_meter = _this.root.find('.gift-meter');
@@ -593,6 +593,29 @@ function(e,t){"object"==typeof exports?module.exports=t():"function"==typeof def
         _this.total_price.text(total_price);
         _this.total_item_count.text(count);
         _this.updateTotalsComplete(count);
+
+        console.log(data);
+        const freeGiftPrice = $('.cart--root').data('free-gift');
+        let showGiftPopup = false;
+        if(data.total_price >= freeGiftPrice) {
+          showGiftPopup = true;
+        }
+
+        for(let i = 0; i < data.items.length; i++) {
+          if(data.items[i].properties) {
+            if(data.items[i].properties['_free_gift'] !== undefined) {
+              showGiftPopup = false;
+            }
+          }
+        }
+
+        if(showGiftPopup && $('body').hasClass('free_gift_popup')) {
+          $('.off-canvas--close').trigger('click');
+          $('.freegift-modal').show();
+        }
+
+        $('body').addClass('free_gift_popup');
+
         return _this.updateCurrencies();
       }).fail(function(jqXHR, textStatus) {
         return console.log('Error - ajax updating totals', JSON.parse(jqXHR.responseText).description);
