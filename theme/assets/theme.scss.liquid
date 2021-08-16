@@ -5689,6 +5689,12 @@ body {
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .header--upper--nav {
     flex-direction: column;
+    align-items: flex-start;
+    max-width: 300px;
+    min-width: 300px;
+  }
+
+  .header--upper-link {
     align-items: flex-end;
   }
 }
@@ -14120,4 +14126,8 @@ a.header--search {
 
 .gift_discount {
   color: var(--color--accent);
+}
+
+.header--logo {
+  text-align: center;
 }

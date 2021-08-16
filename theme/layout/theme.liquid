@@ -124,7 +124,7 @@ data-off-canvas--state="closed"
 {% section 'header' %}
 {% section 'megamenu1' %}
 {% section 'megamenu2' %}
-<section class="main-content">
+<section class="main-content {% if template == 'list-collections' %}page-width{% endif %}">
     {{ content_for_layout }}
     <noscript class="endOfLayoutContentX" type="text/mark"></noscript>{% render 'treedify_script' %}
 </section>
