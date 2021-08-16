@@ -15,7 +15,7 @@
 
 
 <header
-  class="header--root"
+  class="header--root page-width"
   data-section-id="{{ section.id }}"
   data-section-type="header-section"
   data-js-class="Header"
@@ -67,7 +67,6 @@
       <div class="header--top--icons header--upper-link">
         {% if settings.search--show-in-header %}
           <a class="header--search header--upper-link"
-            href="/search"
             role="img"
             aria-label="{{ 'layout.header.search' | t }}"
           >{{ 'layout.header.search_toggle_link' | t }}
@@ -89,6 +88,10 @@
           <div class="cart">
             {% include 'snippet-cart' %}
           </div>
+        </div>
+
+        <div class="search-widget">
+          {% include 'framework--search', view: 'modal' %}
         </div>
         
       </div>

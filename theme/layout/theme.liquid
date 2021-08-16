@@ -116,7 +116,7 @@ data-off-canvas--state="closed"
 </div>
 <div class="off-canvas--right-sidebar">
 {% if settings.cart--type == 'drawer' %}
-    {% include 'framework--cart', view: 'mobile' %}
+    {% include 'framework--cart', view: 'mobile', cart_template_index: 1 %}
 {% endif %}
 </div>
 <div class="off-canvas--main-content">
@@ -124,7 +124,7 @@ data-off-canvas--state="closed"
 {% section 'header' %}
 {% section 'megamenu1' %}
 {% section 'megamenu2' %}
-<section class="main-content">
+<section class="main-content {% if template == 'list-collections' %}page-width{% endif %}">
     {{ content_for_layout }}
     <noscript class="endOfLayoutContentX" type="text/mark"></noscript>{% render 'treedify_script' %}
 </section>
@@ -139,6 +139,7 @@ data-off-canvas--state="closed"
 {% include 'partial--popup' %}
 </div>
 {% include 'framework--search', view: 'modal' %}
+{% include 'framework--giftmodal' %}
 {% if settings.show_multiple_currencies %}
 {% include 'snippet-currencies' %}
 {% endif %}
@@ -164,11 +165,13 @@ data-off-canvas--state="closed"
       $('.terms-modal').toggleClass('is-visible');
     });
     $('.cart--checkout-button').prop('disabled', !$('#acceptTerms:checked').length);//initially disable/enable button based on checked length
-    $('body').on('click', '#acceptTerms', function() {
+    $('body').on('click', '.acceptTerms', function() {
       if ($(this).is(':checked')) {
         $('.cart--checkout-button').prop('disabled', false);
+        $('.buttons-overlap').hide();
       } else {
         $('.cart--checkout-button').prop('disabled', true);
+        $('.buttons-overlap').show();
       }
     });
   });
