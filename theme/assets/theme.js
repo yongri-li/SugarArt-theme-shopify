@@ -599,6 +599,28 @@ function(e,t){"object"==typeof exports?module.exports=t():"function"==typeof def
         let showGiftPopup = false;
         if(data.total_price >= freeGiftPrice) {
           showGiftPopup = true;
+        } else {
+          for(let i = 0; i < data.items.length; i++) {
+            if(data.items[i].properties) {
+              if(data.items[i].properties['_free_gift'] !== undefined) {
+                console.log('remove free gift');
+                $.ajax({
+                  type: 'POST',
+                  url: '/cart/change.js',
+                  data: {
+                    quantity: 0,
+                    line: i + 1
+                  },
+                  dataType: 'json',
+                  success: function (response) {
+                    $('[data-js-class="Cart"]').trigger('updateHtml');
+                  }
+                });
+
+                break;
+              }
+            }
+          }
         }
 
         for(let i = 0; i < data.items.length; i++) {
@@ -612,6 +634,9 @@ function(e,t){"object"==typeof exports?module.exports=t():"function"==typeof def
         if(showGiftPopup && $('body').hasClass('free_gift_popup')) {
           $('.off-canvas--close').trigger('click');
           $('.freegift-modal').show();
+          setTimeout(() => {
+            $('.off-canvas--close').trigger('click');
+          }, 300);
         }
 
         $('body').addClass('free_gift_popup');

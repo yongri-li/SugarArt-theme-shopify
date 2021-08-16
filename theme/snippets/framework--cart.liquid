@@ -155,7 +155,7 @@
                     <a href="{{ item.url }}">{{ item.variant.title }}</a>
                   </div>
                 {% endunless %}
-
+                {% assign is_gift = false %}
                 {% assign property_size = item.properties | size %}
                 {% if property_size > 0 %}
                   {% for p in item.properties %}
@@ -169,6 +169,9 @@
                         {{ p.last }}
                       {% endif %}
                     {% endunless %}
+                    {% if p.first == '_free_gift' %}
+                      {% assign is_gift = true %}
+                    {% endif %}
                   {% endfor %}
                 {% endif %}
               </div>
@@ -180,18 +183,30 @@
                   </div>
                 {% endif %}
 
-                <div class="font--accent money">{{ item.final_price | money }}</div>
-
-                {% if item.line_level_discount_allocations.size > 0 %}
-                  <div class="font--light-accent money">
-                    {% for discount_allocation in item.line_level_discount_allocations %}
-                      {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})
-                    {% endfor %}
+                {% if is_gift %}
+                  <div class="cart--item--total font--accent money">
+                    {{ 0 | money }}
                   </div>
+                  <div class="gift_discount">
+                    FREE GIFT
+                  </div>
+                {% else %}
+                  <div class="font--accent money">{{ item.final_price | money }}</div>
+
+                  {% if item.line_level_discount_allocations.size > 0 %}
+                    <div class="font--light-accent money">
+                      {% for discount_allocation in item.line_level_discount_allocations %}
+                        {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})
+                      {% endfor %}
+                    </div>
+                  {% endif %}
                 {% endif %}
+
+                
               </div>
 
               <div class="cart--item--quantity">
+                {% unless is_gift == true %}
                 <div class="cart--quantity--container input--number">
                   <a
                     class="minus"
@@ -221,6 +236,7 @@
                     {% include 'snippet-symbol' with 'plus' %}
                   </a>
                 </div>
+                {% endunless %}
 
                 <div class="cart--item--remove font--block-link">
                   <a
@@ -232,6 +248,7 @@
                     {{ remove_t }}
                   </a>
                 </div>
+                
               </div>
 
               <div class="cart--item--total font--accent">
@@ -241,9 +258,17 @@
                   </div>
                 {% endif %}
 
-                <div class="money">
-                  {{ item.final_line_price | money }}
-                </div>
+                {% if is_gift %}
+                  <div class="money">
+                    {{ 0 | money }}
+                  </div>
+                {% else %}
+                  <div class="money">
+                    {{ item.final_line_price | money }}
+                  </div>
+                {% endif %}
+
+                
               </div>
             </div>
           {% endfor %}
@@ -288,6 +313,8 @@
                   </div>
                 {% endunless %}
 
+                {% assign is_gift = false %}
+
                 {% assign property_size = item.properties | size %}
                 {% if property_size > 0 %}
                   <div class="cart--item-properties">
@@ -300,8 +327,11 @@
                         <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
                       {% else %}
                         {{ p.last }}
-                      {% endif %}
+                      {% endif %}  
                     {% endunless %}
+                    {% if p.first == '_free_gift' %}
+                      {% assign is_gift = true %}
+                    {% endif %}
                   {% endfor %}
                   </div>
                 {% endif %}
@@ -313,21 +343,33 @@
                     </div>
                   {% endif %}
 
-                  <div class="cart--item--total font--accent money">
-                    {{ item.final_line_price | money }}
-                  </div>
-
-                  {% if item.line_level_discount_allocations.size > 0 %}
-                    <div class="cart--item--discounts font--light-accent">
-                      {% for discount_allocation in item.line_level_discount_allocations %}
-                        {{ discount_allocation.discount_application.title }}&nbsp;
-                        (–<span class="money">{{ discount_allocation.amount | money }}</span>)
-                      {% endfor %}
+                  {% if is_gift %}
+                    <div class="cart--item--total font--accent money">
+                      {{ 0 | money }}
                     </div>
+                    <div class="gift_discount">
+                      FREE GIFT
+                    </div>
+                  {% else %}
+                    <div class="cart--item--total font--accent money">
+                      {{ item.final_line_price | money }}
+                    </div>
+
+                    {% if item.line_level_discount_allocations.size > 0 %}
+                      <div class="cart--item--discounts font--light-accent">
+                        {% for discount_allocation in item.line_level_discount_allocations %}
+                          {{ discount_allocation.discount_application.title }}&nbsp;
+                          (–<span class="money">{{ discount_allocation.amount | money }}</span>)
+                        {% endfor %}
+                      </div>
+                    {% endif %}
                   {% endif %}
+
+                  
                 </div>
 
                 <div class="cart--item--quantity">
+                  {% unless is_gift == true %}
                   <div class="cart--quantity--container input--number">
                     <a
                       tabindex="0"
@@ -357,7 +399,7 @@
                       {% include 'snippet-symbol' with 'plus' %}
                     </a>
                   </div>
-
+                  {% endunless %}
                   <div class="cart--item--remove font--block-link">
                     <a
                       href="/cart/change?line={{ forloop.index }}&quantity=0"
@@ -368,7 +410,7 @@
                       {{ remove_t }}
                     </a>
                   </div>
-
+                  
                 </div>
               </div>
             </div>
@@ -443,8 +485,7 @@
         </div>    
           <!-- End Route Code -->
         <div class="cart--nav">
-          <p class="accept-terms">
-            {% assign cart_template_index = cart_template_index | plus: 1 %}
+          <p class="accept-terms">            
             <input type="checkbox" id="acceptTerms--{{ cart_template_index }}" class="acceptTerms" name="acceptTerms">
             <label for="acceptTerms--{{ cart_template_index }}">I agree to the <a href="#" target="_blank" class="modal-toggle">terms and conditions</a>.</label>
           </p>

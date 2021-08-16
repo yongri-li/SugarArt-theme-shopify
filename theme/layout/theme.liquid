@@ -104,7 +104,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% endunless %}
 {% include 'buddha-megamenu-wireframe' %}
 {% include 'icon-sprite.svg' %}
-{% assign cart_template_index = 0 %}
 <div
 class="off-canvas--viewport"
 data-js-class="FrameworkOffCanvas"
@@ -117,7 +116,7 @@ data-off-canvas--state="closed"
 </div>
 <div class="off-canvas--right-sidebar">
 {% if settings.cart--type == 'drawer' %}
-    {% include 'framework--cart', view: 'mobile' %}
+    {% include 'framework--cart', view: 'mobile', cart_template_index: 1 %}
 {% endif %}
 </div>
 <div class="off-canvas--main-content">
