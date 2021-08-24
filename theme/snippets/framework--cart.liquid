@@ -38,7 +38,7 @@
     {% if cartValue >= freeGift and cartValue < freeShipping %}
       {% if settings.cart_free_metor_type == 'both' %}
         <p class="text"><span>Congratulations! You’ve unlocked <b>FREE Gift!</b></span>
-          Add {{ untilFreeShipping | money }} to receive a FREE Shipping!</p>
+          Add {{ untilFreeShipping | money }} to receive <b>FREE Shipping!</b></p>
       {% elsif settings.cart_free_metor_type == "only_shipping" %}
         <p class="text">Almost there! Add {{ untilFreeShipping | money }} to receive  <b>FREE Shipping!</b></p>
       {% else %}
@@ -58,7 +58,7 @@
     {% endif %}
     {% if cartValue < freeGift %}
       {% if settings.cart_free_metor_type == 'both' %}
-        <p class="text">Almost there! Add {{ untilFreeGift | money }} to unlock <b>FREE Gift</b> and {{ untilFreeShipping | money }} to receive a <b>FREE Shipping!</b></p>
+        <p class="text">Almost there! Add {{ untilFreeGift | money }} to unlock <b>FREE Gift</b> and {{ untilFreeShipping | money }} to receive <b>FREE Shipping!</b></p>
       {% elsif settings.cart_free_metor_type == "only_shipping" %}
         <p class="text">Almost there! Add {{ untilFreeShipping | money }} to receive <b>FREE Shipping!</b></p>
       {% else %}
